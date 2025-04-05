@@ -1,6 +1,8 @@
 
 # REST API with Node and Express
 
+CRUD API functionality with NodeJS and Express.
+
 ## Install
 
 1. Navigate to the project directory.
