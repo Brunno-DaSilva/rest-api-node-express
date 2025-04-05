@@ -1,0 +1,216 @@
+{
+    "addressValidationDetails": {
+      "type": "object",
+      "description": "Response data returned by an IP address validation check.",
+      "required": [
+      ],
+      "properties": {
+        "data": {
+          "required": [
+          ],
+          "properties": {
+            "bot_status": {
+              "type": "boolean",
+              "description": "Indicates if bots or non-human traffic has recently used this IP address to engage in automated fraudulent behavior. Provides stronger confidence that the IP address is suspicious."
+            },
+            "success": {
+              "type": "boolean",
+              "description": "Was the request successful?"
+            },
+            "transaction_details": {
+              "required": [
+              ],
+              "properties": {
+                "billing_phone_line_type": {
+                  "type": "string",
+                  "description": "Landline, Wireless, Toll Free, VOIP, Satellite, Premium Rate, Pager, Internet Service Provider or Unknown."
+                },
+                "address_email_identity_match": {
+                  "type": "string",
+                  "description": "Indicates a reverse identity match between the billing physical address and email address. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                },
+                "valid_billing_phone": {
+                  "type": "boolean",
+                  "description": "Valid & active phone number with the phone carrier (not disconnected)."
+                },
+                "bin_type": {
+                  "type": "string",
+                  "description": "Type of card associated with the credit card BIN. Values can be \"Credit\", \"Debit\", \"Prepaid\", or \"Virtual\". Prepaid and Virtual credit cards carry slightly higher risk."
+                },
+                "name_address_identity_match": {
+                  "type": "string",
+                  "description": "Indicates a reverse identity match between the billing first/last name and physical address. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                },
+                "risk_factors": {
+                  "type": "array",
+                  "description": "Explanation for elevated Risk Scores to better understand why the payment or user was associated with fraudulent behavior and considered a high risk.",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "email_name_identity_match": {
+                  "type": "string",
+                  "description": "Indicates a reverse identity match between the billing email address and first/last name. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                },
+                "phone_name_identity_match": {
+                  "type": "string",
+                  "description": "Indicates a reverse identity match between the billing phone number and first/last name. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                },
+                "phone_address_identity_match": {
+                  "type": "string",
+                  "description": "Indicates a reverse identity match between the billing phone number and physical address. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                },
+                "fraudulent_behavior": {
+                  "type": "boolean",
+                  "description": "Indicates high risk behavior patterns and a high chance of fraud."
+                },
+                "risk_score": {
+                  "type": "float",
+                  "description": "Confidence that this user or transaction is exhibiting malicious behavior. Scores are 0 - 100, with 75+ as suspicious and 90+ as high risk. This value uses different calculations with less weight on the IP reputation compared to the overall \"Fraud Score\"."
+                },
+                "shipping_phone_line_type": {
+                  "type": "string",
+                  "description": "Landline, Wireless, Toll Free, VOIP, Satellite, Premium Rate, Pager, Internet Service Provider or Unknown."
+                },
+                "phone_email_identity_match": {
+                  "type": "string",
+                  "description": " Indicates a reverse identity match between the billing phone number and email address. Values: \"Unknown\" — no checks processed, \"Match\" — positive identity match, \"Mismatch\" — data matches another user, \"No Match\" — could not pair identity data."
+                }
+              },
+              "type": "object"
+            },
+            "mobile": {
+              "type": "boolean",
+              "description": "Is this user agent a mobile browser? (will always be false if the user agent is not passed in the API request)"
+            },
+            "ASN": {
+              "type": "integer",
+              "description": "Autonomous System Number if one is known. Null if nonexistent."
+            },
+            "ISP": {
+              "type": "string",
+              "description": "ISP if one is known. Otherwise \"N/A\"."
+            },
+            "recent_abuse": {
+              "type": "boolean",
+              "description": "This value will indicate if there has been any recently verified abuse for this IP address. Abuse could be a confirmed chargeback, account takeover attack, compromised device, fake application or registration, digital impersonation (stolen user data), bot attack, or similar malicious behavior within the past few days."
+            },
+            "vpn": {
+              "type": "boolean",
+              "description": "Is this IP suspected of being a VPN connection? This can include data center ranges which can become active VPNs at any time. The \"proxy\" status will always be true when this value is true."
+            },
+            "latitude": {
+              "type": "float",
+              "description": "Latitude of IP address if available or null if unknown."
+            },
+            "active_vpn": {
+              "type": "boolean",
+              "description": "Identifies active VPN connections used by popular VPN services and private VPN servers."
+            },
+            "longitude": {
+              "type": "float",
+              "description": "Longitude of IP address if available or null if unknown."
+            },
+            "country_code": {
+              "type": "string",
+              "description": "Two character country code of IP address or \"N/A\" if unknown."
+            },
+            "city": {
+              "type": "string",
+              "description": "City of IP address if available or \"N/A\" if unknown."
+            },
+            "fraud_score": {
+              "type": "float",
+              "description": "The overall fraud score of the user based on the IP, user agent, language, and any other optionally passed variables. Fraud Scores >= 75 are suspicious, but not necessarily fraudulent. We recommend flagging or blocking traffic with Fraud Scores >= 90, but you may find it beneficial to use a higher or lower threshold."
+            },
+            "region": {
+              "type": "string",
+              "description": "Region (state) of IP address if available or \"N/A\" if unknown."
+            },
+            "frequent_abuser": {
+              "type": "boolean",
+              "description": "Identifies IP addresses with a consistent history of abusive behavior across 6 months or more. This data point can be helpful in identifying anonymous IP addresses which are frequently used for malicious behavior, compared to an IP address that may be briefly compromised by malware and only temporarily active in a botnet or residential proxy network."
+            },
+            "tor": {
+              "type": "boolean",
+              "description": "Is this IP suspected of being a TOR connection? This can include previously active TOR nodes and exits which can become active TOR exits at any time. The \"proxy\" status will always be true when this value is true."
+            },
+            "proxy": {
+              "type": "boolean",
+              "description": "Is this IP address suspected to be a proxy? (SOCKS, Elite, Anonymous, VPN, Tor, etc.)"
+            },
+            "security_scanner": {
+              "type": "boolean",
+              "description": "Indicates a verified online security scanner or endpoint by a trusted security vendor such as Tenable, Qualys, and similar providers."
+            },
+            "active_tor": {
+              "type": "boolean",
+              "description": "Identifies active TOR exits on the TOR network."
+            },
+            "trusted_network": {
+              "type": "boolean",
+              "description": "Identifies company networks and corporate access points which have low abuse rates and high security protocols. IP addresses on these networks may still be compromised by malware, however the network overall will be considered trusted if this value is true."
+            },
+            "high_risk_attacks": {
+              "type": "boolean",
+              "description": "Confirms if this IP address has engaged in malicious abuse such as phishing, brute forcing, DDoS, credential stuffing & account takeover, scraping, form submission spam, and similar attacks. This data point has a high correlation with anonymous proxies, open proxies, public VPNs, and easily accessible anonymizers."
+            },
+            "host": {
+              "type": "string",
+              "description": "Hostname of the IP address if one is available."
+            },
+            "dynamic_connection": {
+              "type": "boolean",
+              "description": "Indicates IP addresses with dynamic assignment protocols, which means that a user on this IP address will likely be assigned a different IP address by this provider in the near future."
+            },
+            "is_crawler": {
+              "type": "boolean",
+              "description": "Is this IP associated with being a confirmed crawler from a mainstream search engine such as Googlebot, Bingbot, Yandex, etc. based on hostname or IP address verification."
+            },
+            "organization": {
+              "type": "string",
+              "description": "Organization if one is known. Can be parent company or sub company of the listed ISP. Otherwise \"N/A\"."
+            },
+            "abuse_velocity": {
+              "type": "string",
+              "description": "How frequently the IP address is engaging in abuse across the threat network. Values can be \"high\", \"medium\", \"low\", or \"none\". Can be used in combination with the Fraud Score to identify bad behavior."
+            },
+            "timezone": {
+              "type": "string",
+              "description": "Timezone of IP address if available or \"N/A\" if unknown."
+            },
+            "message": {
+              "type": "string",
+              "description": "A generic status message, either success or some form of an error notice."
+            },
+            "connection_type": {
+              "type": "string",
+              "description": "Classification of the IP address connection type as \"Residential\", \"Corporate\", \"Education\", \"Mobile\", or \"Data Center\"."
+            },
+            "shared_connection": {
+              "type": "boolean",
+              "description": "Designates IP addresses which are likely to have more than a few users active on the IP address at the same time, such as mobile networks, corporate exit points, and similar connections. This can also include libraries, coffee shops, hotel lobbies, dormitories, hospitals and medical centers, company VPNs, etc."
+            },
+            "zip_code": {
+              "type": "string",
+              "description": "Postal code of IP address if available or \"N/A\" if unknown. IP addresses can relate to multiple postal codes in a city, so we recommend performing analysis of similar postal codes nearby."
+            },
+            "request_id": {
+              "type": "string",
+              "description": "A unique identifier for this request."
+            }
+          },
+          "type": "object"
+        },
+        "result": {
+          "type": "boolean"
+        },
+        "success": {
+          "type": "boolean"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }

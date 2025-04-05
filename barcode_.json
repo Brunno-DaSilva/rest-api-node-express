@@ -1,0 +1,263 @@
+{
+    "idcheck": {
+      "type": "object",
+      "description": "Barcode check signal (`idcheck`) response.",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "True if the API call was successful; false otherwise."
+        },
+        "result": {
+          "type": "boolean",
+          "description": "True if data was returned in the data object; false otherwise."
+        },
+        "message": {
+          "type": "string",
+          "description": "A description of the result output, for example, \"success\" or an error message."
+        },
+        "imageQualityFindings": {
+          "type": "array",
+          "description": "Array of image quality detection response codes with messages. Each member contains one code and one message.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Image quality detection response code."
+              },
+              "message": {
+                "type": "string",
+                "description": "Image quality detection response message."
+              }
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Contains the idcheck signal elements returned as a JSON object.",
+          "properties": {
+            "processResult": {
+              "type": "string",
+              "description": "Processing result status code. See [ID Verification processResult Definitions](doc:id-verification-processresult-definitions)",
+              "enum":
+              [
+                "DocumentProcessOK",
+                "DocumentBadRead",
+                "DocumentBadDevice",
+                "DocumentUnknown",
+                "Document1DDocument",
+                "ErrorBadConfiguration",
+                "UnexpectedError"
+              ]
+            },
+            "extendedResultCode": {
+              "type": "string",
+              "deprecated": "true",
+              "description": "Processing result diagnostic code. Values are Y, U, B, IUX, F, 1, UEE. See [Extended Result Codes](doc:id-verification-processresult-definitions#extended-result-codes).",
+              "enum":
+              [
+                "Y",
+                "U",
+                "B",
+                "IUX",
+                "F",
+                "1",
+                "UEE"
+              ]
+            },
+            "firstName": {
+              "type": "string",
+              "description": "Contains the first name."
+            },
+            "middleName": {
+              "type": "string",
+              "description": "Contains the middle name."
+            },
+            "lastName": {
+              "type": "string",
+              "description": "Contains the last name with suffix if present."
+            },
+            "address1": {
+              "type": "string",
+              "description": "Contains line one of the residence address."
+            },
+            "address2": {
+              "type": "string",
+              "description": "Contains line two of the residence address."
+            },
+            "city": {
+              "type": "string",
+              "description": "Contains the city of residence."
+            },
+            "state": {
+              "type": "string",
+              "description": "Contains the jurisdiction of residence."
+            },
+            "postalCode": {
+              "type": "string",
+              "description": "Contains the postal code (zip code) of residence."
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "description": "Contains the date of birth in MM/DD/YYYY format. When a partial birth date is encoded on the document, the fields that are unknown will be filled in with ? characters. For example: 01/12/???? will be returned for a document that does not encode the birth date year."
+            },
+            "age": {
+              "type": "integer",
+              "description": "Contains the age based on the date of birth and the current system date. The age will be  1 if the age is unknown. The age will be  1 if either no date of birth or a partial date of birth is encoded."
+            },
+            "heightCentimeters": {
+              "type": "string",
+              "description": "Contains the height in centimeters for areas that use metric units."
+            },
+            "heightFeetInches": {
+              "type": "string",
+              "description": "Contains the height in feet and inches for areas that use customary units, for example, 5’2”."
+            },
+            "weightKilograms": {
+              "type": "string",
+              "description": "Contains the weight in kilograms as specified on the ID."
+            },
+            "weightPounds": {
+              "type": "string",
+              "description": "Contains the weight in pounds as specified on the ID."
+            },
+            "eyeColor": {
+              "type": "string",
+              "description": "Contains the eye color. If the jurisdiction code for eye color is known, the color’s name is returned, for example, brown, blue, hazel. If the code is not recognized, the code that is encoded on the document is returned."
+            },
+            "hairColor": {
+              "type": "string",
+              "description": "Contains the hair color. If the jurisdiction code for hair color is known, the color’s name is returned, for example, brown, black, blonde. If the code is not recognized, the code that is encoded on the document is returned."
+            },
+            "gender": {
+              "type": "string",
+              "description": "Contains the gender. Either Male or Female."
+            },
+            "socialSecurity": {
+              "type": "string",
+              "description": "This field is intentionally blank."
+            },
+            "mediaType": {
+              "type": "string",
+              "description": "Contains the media type of the processed document. Examples include MAG and 2D."
+            },
+            "uniqueID": {
+              "type": "string",
+              "description": "Contains a unique ID to identify the document format. All jurisdiction document formats are assigned a unique ID by Intellicheck."
+            },
+            "testCard": {
+              "type": "boolean",
+              "description": "True if the document is an Intellicheck test card; false otherwise. Intellicheck can provide test cards that produce different responses for system testing and demonstration."
+            },
+            "dLIDNumberRaw": {
+              "type": "string",
+              "description": "Contains the raw driver license or ID (DL/ID) value. This will not contain any formatting characters, such as spaces and hyphens. It will contain only the alphanumeric characters that make up the DL/ID."
+            },
+            "dLIDNumberFormatted": {
+              "type": "string",
+              "description": "Contains the formatted driver license or ID (DL/ID) value. This will contain the formatting characters, such as spaces and hyphens, as it appears on the printed document."
+            },
+            "restrictions": {
+              "type": "string",
+              "description": "Contains the restriction codes encoded on the document."
+            },
+            "endorsements": {
+              "type": "string",
+              "description": "Contains the endorsement codes encoded on the document."
+            },
+            "driverClass": {
+              "type": "string",
+              "description": "Contains the driver class codes encoded on the document."
+            },
+            "organDonor": {
+              "type": "string",
+              "description": "Contains Yes or No indicating if the document owner is an organ donor."
+            },
+            "expirationDate": {
+              "type": "string",
+              "description": "Contains the expiration date of the processed document in MM/DD/YYYY format or the word NEVER for documents that do not expire. When a partial expiration date is encoded on the document, the fields that are unknown will be filled in with ? characters. For example, 01/12/???? will be returned for a document that does not encode the expiration year."
+            },
+            "expired": {
+              "type": "string",
+              "enum":
+              [
+                "Yes",
+                "No",
+                "Unknown"
+              ],
+              "description": "Contains the expiration status of the document. Values are Yes, No, or Unknown."
+            },
+            "issueDate": {
+              "type": "string",
+              "description": "Contains the date of issuance of the document in MM/DD/YYYY format."
+            },
+            "issuingJurisdictionCvt": {
+              "type": "string",
+              "description": "Contains the full name of the issuing jurisdiction, for example, New York."
+            },
+            "issuingJurisdictionAbbrv": {
+              "type": "string",
+              "description": "Contains the name of the issuing jurisdiction as an abbreviation. This value will always be two letters, for example, NY."
+            },
+            "isDuplicate": {
+              "type": "string",
+              "description": "Contains the document duplication status. Values are Yes, No, or empty. An empty value means the duplicate status is unknown.",
+              "enum":
+              [
+                "Yes",
+                "No",
+                "{empty}"
+              ]
+            },
+            "duplicateDate": {
+              "type": "string",
+              "description": "Contains the date the duplicate document was issued in MM/DD/YYYY format."
+            },
+            "docType": {
+              "type": "string",
+              "description": "Contains the type of document (if available) from the barcode, for example, Driver's License, Learner's Permit, Operator License, and so on. Values vary by issuing jurisdiction. An empty value means the type is not identifiable."
+            },
+            "docCategory": {
+              "type": "string",
+              "description": "Contains the document category acronym from the barcode. The value is typically one of the following: DL (driver license), HC (health card), ID (identification card), MIL (military identification). Rarely, certain other values are possible: WPN (weapon), HCP (handicap), WV (water vehicle), EMP (employee), OID (other). An empty value means the category is not identifiable.",
+              "enum": [
+                "DL",
+                "HC",
+                "ID",
+                "MIL",
+                "WPN",
+                "HCP",
+                "WV",
+                "EMP",
+                "OID",
+                "{empty}"
+              ]
+            },
+            "isRealID": {
+              "type": "string",
+              "description": "Contains the document REAL ID status. Values are Yes, No, or empty. Yes means the document was issued in compliance with United States Department of Homeland Security (DHS) requirements for the REAL ID Act passed by Congress in 2005. No means it was not. An empty value means the document did not have enough information to determine a result.",
+              "enum":
+              [
+                "Yes",
+                "No",
+                "{empty}"
+              ]
+            },
+            "stateIssuerMismatch": {
+              "enum": [
+                "No",
+                "Yes",
+                "Unknown"
+              ],
+              "type": "string",
+              "description": "Contains a status of whether the address state compared to the document issuer are mismatched. Values are Yes, No, or Unknown. Yes means the state and issuer do not match. No means the state and issuer match. Unknown means the match status is not known."
+            },
+            "transactionIdentifier": {
+              "type": "string",
+              "description": "Contains a transaction ID."
+            }
+          }
+        }
+      }
+    }
+  }

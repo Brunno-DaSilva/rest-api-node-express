@@ -1,0 +1,153 @@
+{
+    "documentLivenessIdRnD": {
+      "type": "object",
+      "description": "Document liveness signal (document_liveness_idrnd) response",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "True if the API call was successful; false otherwise."
+        },
+        "result": {
+          "type": "boolean",
+          "description": "True if data was returned in the data object; false otherwise."
+        },
+        "message": {
+          "type": "string",
+          "description": "A description of the result output, for example, \"success\" or an error message."
+        },
+        "imageQualityFindings": {
+          "type": "array",
+          "description": "Array of image quality detection response codes with messages. Each member contains one code and one message.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Image quality detection response code."
+              },
+              "message": {
+                "type": "string",
+                "description": "Image quality detection response message."
+              }
+            }
+          }
+        },
+        "data": {
+          "type": "object",
+          "description": "Contains the document_liveness_idrnd signal elements returned as a JSON object.",
+          "properties": {
+            "front": {
+              "type": [
+                "object",
+                "null"
+              ],
+              "description": "Results from the front side of the document. Returns null if the front side of the document was not submitted.",
+              "properties": {
+                "screenReplay": {
+                  "type": "object",
+                  "description": "Probability results for an on-screen document.",
+                  "properties": {
+                    "threshold": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Hard-set threshold to make liveness determination."
+                    },
+                    "live": {
+                      "type": "integer",
+                      "description": "Determined by comparing probability field to threshold. 0 = not live. 1 = live. 2 = check not performed.",
+                      "enum": [
+                        "0",
+                        "1",
+                        "2"
+                      ]
+                    },
+                    "probability": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "format": "float",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "multipleOf": 0.001,
+                      "description": "Probability between 0 and 1 that the document is live. Returns null if the check was not performed. Value is rounded to three decimal places."
+                    }
+                  }
+                },
+                "printedCopy": {
+                  "type": "object",
+                  "description": "Probability results for a printed-copy document.",
+                  "properties": {
+                    "threshold": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Hard-set threshold to make liveness determination."
+                    },
+                    "live": {
+                      "type": "integer",
+                      "description": "Determined by comparing probability field to threshold. 0 = not live. 1 = live. 2 = check not performed.",
+                      "enum": [
+                        "0",
+                        "1",
+                        "2"
+                      ]
+                    },
+                    "probability": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "format": "float",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "multipleOf": 0.001,
+                      "description": "Probability between 0 and 1 that the document is live. Returns null if the check was not performed. Value is rounded to three decimal places."
+                    }
+                  }
+                },
+                "portraitSubstitution": {
+                  "type": "object",
+                  "description": "Probability results for a portrait-substitution document.",
+                  "properties": {
+                    "threshold": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "Hard-set threshold to make liveness determination."
+                    },
+                    "live": {
+                      "type": "integer",
+                      "description": "Determined by comparing probability field to threshold. 0 = not live. 1 = live. 2 = check not performed.",
+                      "enum": [
+                        "0",
+                        "1",
+                        "2"
+                      ]
+                    },
+                    "probability": {
+                      "type": [
+                        "number",
+                        "null"
+                      ],
+                      "format": "float",
+                      "minimum": 0,
+                      "maximum": 1,
+                      "multipleOf": 0.001,
+                      "description": "Probability between 0 and 1 that the document is live. Returns null if the check was not performed. Value is rounded to three decimal places."
+                    }
+                  }
+                },
+                "live": {
+                  "type": "integer",
+                  "description": "Overall liveness value for the front side of the document. This is based on the results of individual checks, such as `screenReplay`, `printedCopy`, and `portraitSubstitution`. If any of the individual checks returned 0, then this overall value is 0. Possible values are 0 = not live. 1 = live.",
+                  "enum": [
+                    "0",
+                    "1"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

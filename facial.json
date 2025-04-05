@@ -1,0 +1,63 @@
+{
+    "facial": {
+      "type": "object",
+      "description": "Facial matching and liveness detection signal (`facial`) response.",
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "description": "True if the API call was successful; false otherwise."
+        },
+        "result": {
+          "type": "boolean",
+          "description": "True if data was returned in the data object; false otherwise."
+        },
+        "message": {
+          "type": "string",
+          "description": "A description of the result output, for example, \"success\" or an error message."
+        },
+        "data": {
+          "type": "object",
+          "description": "Contains the facial signal elements returned as a JSON object.",
+          "properties": {
+            "matched": {
+              "type": "boolean",
+              "description": "Indicates if the current facial image is matched with the document facial image."
+            },
+            "matchScore": {
+              "type": "number",
+              "format": "float",
+              "description": "Numeric representation of the degree to which the selfie matches the document facial image. Based on the comparison between the current facial image (selfie) and the document facial image. Value is rounded to two decimal places."
+            },
+            "matchProbability": {
+              "type": "number",
+              "format": "float",
+              "description": "Likelihood is selfie matches the document facial image. Value is rounded to two decimal places."
+            },
+            "isLive": {
+              "type": "boolean",
+              "description": "Whether image is a live person."
+            },
+            "livenessScore": {
+              "type": "number",
+              "format": "float",
+              "description": "Numeric representation of the degree to which the selfie image is that of a live person based on livenessProbability. Value is rounded to two decimal places."
+            },
+            "livenessProbability": {
+              "type": "number",
+              "format": "float",
+              "description": "Likelihood the image is a live person. Value is rounded to two decimal places."
+            },
+            "errorMessage": {
+              "type": "string",
+              "description": "Indicates the cause of failed liveness detection. Either unable to recognize license or unable to parse data from license."
+            },
+            "photoFace": {
+              "deprecated": true,
+              "type": "string",
+              "description": "Deprecated. Refer to [Submitted Images Response](doc:submitted-images-response). Selfie image in base64 format. This is optional and will only be returned if you subscribe to return of selfie image."
+            }
+          }
+        }
+      }
+    }
+  }
