@@ -1,3 +1,6 @@
+
+# REST API with Node and Express
+
 ## Install
 
 1. Navigate to the project directory.
@@ -7,5 +10,5 @@
 
 1. Start the project by running `npm run dev`.
 2. Open your browser and navigate to `http://localhost:3000`.
-# rest-api-node-express
-# rest-api-node-express
+
+
